@@ -1,31 +1,49 @@
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.Random;
+
 
 public class Main
 {
-
-
-
     public static void main(String[] args)
     {
+         //  arrays();
+           matrix();
 
-            arrays();
-            matrix();
     }
 
     public static void matrix(){
-        int[][] matrix;
-        int size = 3;
-        matrix = new int[3][3];
-          for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                matrix[i][j] = randomInt();
-                System.out.print(matrix[i][j] + " ");
-            }
+        final int SIZE = 3;
 
+        int[][] matrix = new int[SIZE][SIZE];
+        for (int i = 0; i < SIZE; i++)
+        {
+            for (int j = 0; j < SIZE; j++)
+                matrix[i][j] = randomInt();
         }
+
+        //-------------------------------------------
+        if(matrix.length > 0) {
+            int max = matrix[0][0];
+            int x = 0, y = 0;
+            for (int i = 0; i < SIZE; i++) {
+                for (int j = 0; j < SIZE; j++) {
+                    if (max < matrix[i][j]) {
+                        max = matrix[i][j];
+                        x = i;
+                        y = j;
+                    }
+
+                }
+
+            }
+            // N[x],[]
+            System.out.println(max + " [" + x + "][" + y + "]");
+        }
+        else {
+            System.out.println("Матрица не задана");
+        }
+
     }
+
 
     public static int randomInt()
     {
