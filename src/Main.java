@@ -13,11 +13,13 @@ public class Main
             int max = arr[0];
             for (int i = 0; i < arr.length; i++)
             {
-                if (max > arr[i]) {
-                    max = arr[i];
+                if (arr[i]%2==0) {
+                    if (max < arr[i])
+                   max = arr[i];
                 }
             }
             System.out.println(max);
         }
+        else System.out.println("Массив пустой");
     }
 }
