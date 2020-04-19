@@ -16,10 +16,11 @@ public class Main
     public static void doWhile()
     {
         int c = 10;
+        //сначала делаем do единажды потом проверяются условия
         do
         {
             System.out.println("осталось " + c + " секунд \n");
-            c--;
-        } while (c > 0);
+// Если есловия правильные цикл повторяется еще раз пока не станут false
+        } while (--c > -1);
     }
 }
