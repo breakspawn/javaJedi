@@ -2,20 +2,25 @@ public class Main
 {
     public static void main(String[] args)
     {
+
+        cycleWhile(76);
+        doWhile(10);
+    }
+    public static void cycleWhile(int maxLength)
+    {
         String string = "";
 
-        while(string.length() < 36)
+//проверяем количество заданных символов, еслизначение истинно добавлем ещё строку
+        while(string.length() < maxLength)
         {
             string+="Hello World \n";
         }
 
         System.out.println(string);
-        doWhile();
     }
 
-    public static void doWhile()
+    public static void doWhile(int c)
     {
-        int c = 10;
         //сначала делаем do единажды потом проверяются условия
         do
         {
@@ -23,4 +28,5 @@ public class Main
 // Если есловия правильные цикл повторяется еще раз пока не станут false
         } while (--c > -1);
     }
+
 }
