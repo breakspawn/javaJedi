@@ -9,23 +9,20 @@ public class Main
 
     public static void main(String[] args) throws IOException
     {
-        //Копирование файлов
+      //Копирование файлов
       CopyFiles copyFiles = new CopyFiles();
       File from = new File("c:\\", "Shitcode");
       File to =  new File("c:\\", "Shitcode0000");
       copyFiles.CopyFiles(from, to);
 
-//замена текста файла на заглавные буквы
+       //замена текста файла на заглавные буквы
         FileToText rf = new FileToText();
         String c = rf.readFile("c:\\Shitcode");
         String res = c.toUpperCase();
-        File f = new File("c:\\", "abc");
-        System.out.println(res);
-        OutputStream os = new FileOutputStream(f);
-        for (int i = 0; i < res.length(); i++) {
-            os.write(res.charAt(i));
+        rf.writeTextToFile(res, "bbc");
 
-        }
+        System.out.println(res);
+
 
     }
 }
@@ -46,9 +43,12 @@ class FileToText {
 
         return str;
     }
-    public void writeTextToFile (String fileName) throws IOException {
-        FileWriter fileWriter = new FileWriter(fileName);
-
+    public void writeTextToFile (String text, String fileName) throws IOException {
+        File file = new File("c:\\", fileName);
+        OutputStream os = new FileOutputStream(file);
+        for (int i = 0; i < text.length(); i++) {
+            os.write(text.charAt(i));
+        }
     }
  }
 
