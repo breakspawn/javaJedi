@@ -43,10 +43,49 @@ public class Main
         ex &= ~0x04; // 0001 1100 & 1111 1011
         System.out.println(ex);
         System.out.println(0xff);
+        Protocol p = new Protocol(true, (byte)50);
+
+        for(int i = 0; i < p.length(); i++)
+            System.out.print(" " + p.getPack()[i]);
     }
 
     static boolean Compare(int received, int mask)
     {
         return (received & mask) == mask;
     }
+}
+
+class Protocol
+{
+    final byte MARKER_START = 0x7A; //
+    final byte MARKER_END   = 0x7E; //
+
+    final byte IS_TESTED = 0x40;
+
+    public Protocol(boolean isTested, byte countTestCycles)
+    {
+        pack[0] = MARKER_START;
+        pack[1] = 6;
+        pack[2] = (isTested? 0x01 : 0x00) << 6 | countTestCycles; // 0111 0010 // 0111 0010
+        short crc = 524; // 0000 0000 0000 0000
+        pack[3] = crc & 0xFF;
+        pack[4] = crc>>8 & 0xFF; // 0000 0010 0000 1100
+        pack[5] = MARKER_END;
+
+        if((pack[2] & IS_TESTED) == IS_TESTED){
+            System.out.println("Status tested...");
+        }
+    }
+    public int length(){
+        return pack[1];
+    }
+
+    int[] getPack() {return pack;}
+
+    int [] pack = new int[6];
+    // 0 - маркер начала
+    // 1 - длина
+    // 2 - тестирован или нет
+    // 3 - количество циклов тестирование
+    // 4 - маркер конца
 }
